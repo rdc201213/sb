@@ -9,8 +9,9 @@ using namespace std;
 
 class Student
 {
-private:
-	
+public:
+	Student* Last;
+	Student* Next;
 	int StudentID;
 	string StudentName;
 	string StudentSex;
@@ -30,8 +31,7 @@ public:
 		Student* LastStudent);
 	~Student();
 	void Print();
-	Student* Last;
-	Student* Next;
+	
 };
 
 #endif

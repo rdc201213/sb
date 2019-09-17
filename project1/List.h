@@ -1,7 +1,5 @@
 #pragma once
 #include"Student.h"
-#include<iostream>
-using namespace std;
 class List
 {
 private:
@@ -17,10 +15,14 @@ public:
 		int Age,
 		string Test,
 		Student* Last);
-	Student* Find();
-	void Insert();
-	void Change();
-	void Delete();
-	Student* CurrentPos;
+	void Append(Student* NewStudent);
+	Student* Find(int ID);
+	Student* Find(string name);
+	void Insert(int Pos, Student* NewStudent);
+	void Change(int ID);
+	void Change(string Name);
+	void Delete(int ID);
+	void Delete(string Name);
 	void Print();
+	Student* CurrentPos;
 };
