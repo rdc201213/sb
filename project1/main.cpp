@@ -15,7 +15,7 @@ int main()
 	cin >> num;
 	while (num == 0)
 	{
-		cout << "Please enter a number greater than zero\n"<< "请输入考生人数：";
+		cout << "请输入一个大于0的数字\n"<< "请输入考生人数：";
 		cin >> num;
 	}
 	List StudentList ;
@@ -43,6 +43,7 @@ int main()
 			cout << "请依此输入要插入的考生的考号，姓名，性别，年龄，报考类别以及插入位置\n";
 			cin >> StudentID >> StudentName >> StudentSex >> StudentAge >> TestName>>Pos;
 			StudentList.Insert(Pos,new Student(StudentID, StudentName, StudentSex, StudentAge, TestName));
+			break;
 		case 2:
 			cout << "请选择删除方式: 1:按学号删除 2:按姓名删除\n";
 			cin >> num;

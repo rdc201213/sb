@@ -55,9 +55,10 @@ void List::Append(int ID,
 
 void List::Append(Student* NewStudent)
 {
-	EndPos->Last = NewStudent;
+	EndPos->Next = NewStudent;
 	NewStudent->Last = EndPos;
 	EndPos = NewStudent;
+	Lenth++;
 }
 
 void List::Print()
@@ -68,7 +69,10 @@ void List::Print()
 		CurrentPos->Print();
 		CurrentPos=CurrentPos->Next;
 	}
-	CurrentPos->Print();
+	if (EndPos != 0)
+	{
+		EndPos->Print();
+	}
 }
 
 Student* List::Find(int ID)
@@ -129,29 +133,46 @@ Student* List::Find(string Name)
 
 void List::Insert(int Pos,Student* NewStudent)
 {
-	if (Pos > Lenth)
+	if (Lenth == 0)
 	{
-		cout << "已超过当前列表总长度，该学员已被添加至列表最后一位\n";
-		this->Append(NewStudent);
-	}
-	else if (Pos == 1)
-	{
-		StartPos->Last = NewStudent;
-		NewStudent->Next = StartPos;
 		StartPos = NewStudent;
+		EndPos = NewStudent;
 	}
 	else
 	{
-		CurrentPos = StartPos;
-		for (int i = 1; i < Pos; i++)
+		if (Pos > Lenth)
 		{
-			CurrentPos = CurrentPos->Next;
+			cout << "已超过当前列表总长度，该学员已被添加至列表最后一位\n";
+			this->Append(NewStudent);
 		}
-		NewStudent->Last = CurrentPos->Last;
-		NewStudent->Next = CurrentPos;
-		CurrentPos->Last->Next = NewStudent;
-		CurrentPos->Last = NewStudent;
+		else if (Pos == 1)
+		{
+			StartPos->Last = NewStudent;
+			NewStudent->Next = StartPos;
+			StartPos = NewStudent;
+		}
+		else if (Pos < 1) 
+		{
+			cout << "由于插入位置小于等于0该学员已被添加至第一位\n"
+				<< "请尽量不要输入小于等于0的数\n";
+			StartPos->Last = NewStudent;
+			NewStudent->Next = StartPos;
+			StartPos = NewStudent;
+		}
+		else
+		{
+			CurrentPos = StartPos;
+			for (int i = 1; i < Pos; i++)
+			{
+				CurrentPos = CurrentPos->Next;
+			}
+			NewStudent->Last = CurrentPos->Last;
+			NewStudent->Next = CurrentPos;
+			CurrentPos->Last->Next = NewStudent;
+			CurrentPos->Last = NewStudent;
+		}
 	}
+	Lenth++;
 }
 
 void List::Change(int ID)
@@ -198,11 +219,21 @@ void List::Delete(int ID)
 		cin >> Juge;
 		if (Juge == 'Y'||Juge=='y') 
 		{
-			if (TempStudent == StartPos)
+			if (TempStudent == StartPos && TempStudent == EndPos)
+			{
+				delete TempStudent;
+				StartPos = 0;
+				EndPos = 0;
+				CurrentPos = 0;
+				Lenth--;
+				cout << "已成功删除\n";
+			}
+			else if (TempStudent == StartPos)
 			{
 				TempStudent->Next->Last = TempStudent->Last;
 				StartPos = TempStudent->Next;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 			else if (TempStudent == EndPos)
@@ -210,6 +241,7 @@ void List::Delete(int ID)
 				TempStudent->Last->Next = TempStudent->Next;
 				EndPos = TempStudent->Last;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 			else
@@ -217,6 +249,7 @@ void List::Delete(int ID)
 				TempStudent->Last->Next = TempStudent->Next;
 				TempStudent->Next->Last = TempStudent->Last;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 		}
@@ -241,11 +274,21 @@ void List::Delete(string Name)
 		cin >> Juge;
 		if (Juge == 'Y' || Juge == 'y')
 		{
-			if (TempStudent == StartPos)
+			if (TempStudent == StartPos && TempStudent == EndPos)
+			{
+				delete TempStudent;
+				StartPos = 0;
+				EndPos = 0;
+				CurrentPos = 0;
+				Lenth--;
+				cout << "已成功删除\n";
+			}
+			else if (TempStudent == StartPos)
 			{
 				TempStudent->Next->Last = TempStudent->Last;
 				StartPos = TempStudent->Next;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 			else if (TempStudent == EndPos)
@@ -253,6 +296,7 @@ void List::Delete(string Name)
 				TempStudent->Last->Next = TempStudent->Next;
 				EndPos = TempStudent->Last;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 			else
@@ -260,6 +304,7 @@ void List::Delete(string Name)
 				TempStudent->Last->Next = TempStudent->Next;
 				TempStudent->Next->Last = TempStudent->Last;
 				delete TempStudent;
+				Lenth--;
 				cout << "已成功删除\n";
 			}
 		}
