@@ -13,8 +13,9 @@ int main()
 	int StudentAge;
 	string TestName;
 	cin >> num;
-	while (num == 0)
+	while (num <= 0)
 	{
+		//当输入的数字小于0时让用户重新输入
 		cout << "请输入一个大于0的数字\n"<< "请输入考生人数：";
 		cin >> num;
 	}
@@ -27,11 +28,12 @@ int main()
 	}
 	cout << "创建成功,列表如下\n";
 	StudentList.Print();
-	int Switch = 1;
+	int Switch = 1;//用来作为循环的判断值
 	while (Switch)
 	{
 		cout << "请选择要执行的操作: 1:插入 2:删除 3:查找 4:修改 5:打印列表 0:结束\n";
 		cin >> num;
+		//根据用户选择进行操作
 		switch (num)
 		{
 		case 0:
@@ -108,6 +110,7 @@ int main()
 			StudentList.Print();
 			break;
 		default:
+			//当输入不存在的指令时报错
 			cout << "指令错误，请重新输入\n";
 			break;
 		}

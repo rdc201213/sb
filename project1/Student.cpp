@@ -1,4 +1,5 @@
 #include "Student.h"
+//两种构造函数以应对不同需求
 Student::Student(int ID,
 	string Name,
 	string Sex,
@@ -29,6 +30,9 @@ Student::Student(int ID,
 	Last = LastStudent;
 	Next = nullptr;
 }
+
+//析构函数
+//清零所有变量
 Student::~Student()
 {
 	StudentID = 0;
@@ -39,6 +43,8 @@ Student::~Student()
 	Last = 0;
 	Next = 0;;
 }
+
+//输出该节点信息
 void Student::Print()
 {
 	cout << this->StudentID <<" "<< this->StudentName << " "

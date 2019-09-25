@@ -1,4 +1,6 @@
 #include "List.h"
+//构造函数
+//变量初始化置零
 List::List()
 {
 	StartPos = 0;
@@ -6,6 +8,9 @@ List::List()
 	CurrentPos = 0;
 	Lenth = 0;
 }
+
+//析构函数
+//变量清零
 List::~List()
 {
 	StartPos = 0;
@@ -14,6 +19,7 @@ List::~List()
 	Lenth = 0;
 }
 
+//将元素添至链表末尾
 void List::Append(int Num)
 {
 	Member* Temp=new Member;
@@ -34,10 +40,12 @@ void List::Append(int Num)
 	Lenth++;
 }
 
+//输出链表所有元素
 void List::Print()
 {
 	if (this->StartPos == 0)
 	{
+		//如果是空链表输出NULL
 		cout << "NULL\n";
 		return;
 	}

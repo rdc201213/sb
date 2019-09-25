@@ -1,4 +1,7 @@
 #include"List.h"
+
+//链表的构造函数
+//所有变量初始化为0
 List::List()
 {
 	StartPos = 0;
@@ -7,6 +10,8 @@ List::List()
 	Lenth = 0;
 }
 
+//链表析构函数
+//清空变量
 List::~List()
 {
 	CurrentPos = StartPos;
@@ -21,6 +26,7 @@ List::~List()
 	CurrentPos = 0;
 }
 
+//将新学生添加至链表末尾
 void List::Append(int ID,
 	string Name,
 	string Sex,
@@ -53,6 +59,7 @@ void List::Append(int ID,
 	}
 }
 
+
 void List::Append(Student* NewStudent)
 {
 	EndPos->Next = NewStudent;
@@ -61,6 +68,7 @@ void List::Append(Student* NewStudent)
 	Lenth++;
 }
 
+//输出链表
 void List::Print()
 {
 	CurrentPos = StartPos;
@@ -75,6 +83,7 @@ void List::Print()
 	}
 }
 
+//按学号查找考生
 Student* List::Find(int ID)
 {
 	CurrentPos = StartPos;
@@ -103,6 +112,7 @@ Student* List::Find(int ID)
 	}
 }
 
+//按姓名查找考生
 Student* List::Find(string Name)
 {
 	CurrentPos = StartPos;
@@ -131,6 +141,7 @@ Student* List::Find(string Name)
 	}
 }
 
+//插入考生
 void List::Insert(int Pos,Student* NewStudent)
 {
 	if (Lenth == 0)
@@ -175,6 +186,7 @@ void List::Insert(int Pos,Student* NewStudent)
 	Lenth++;
 }
 
+//改变考生信息(根据查找方式不同有两个函数)
 void List::Change(int ID)
 {
 	Student* TempStudent = this->Find(ID);
@@ -205,6 +217,7 @@ void List::Change(string Name)
 	}
 }
 
+//删除考生(根据查找方式不同有两个函数)
 void List::Delete(int ID)
 {
 	Student* TempStudent = this->Find(ID);

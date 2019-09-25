@@ -9,7 +9,8 @@ using namespace std;
 
 class Student
 {
-public:
+friend class List;
+private:
 	Student* Last;
 	Student* Next;
 	int StudentID;
